@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import Models.Livro;
+import Models.Pet;
 
 
 public class main {
@@ -28,10 +29,45 @@ public class main {
        System.out.println("Preço: R$ " + livro.getValor());
        System.out.println("----------------------------------------------------");
 
-       lr.close();
+
+
+
+       System.out.println("Qual o nome do Pet?");
+       String nome = lr.next();
+       System.out.println("Qual a idade do Pet?");
+       int idade = lr.nextInt();
+       System.out.println("Qual a raça?");
+       String raca = lr.next();
+       System.out.println("Qual o porte dele?");
+       String porte = lr.next();
+       System.out.println("Qual o tipo de alimentação?");
+       String alimentacao = lr.next();
+
+       Pet pet = new Pet(nome, idade, raca, porte, alimentacao);
+
+       System.out.println("Nome do Pet: " + pet.getNome());
+       System.out.println("Idade do PEt: " + pet.getIdade());
+       System.out.println("Raça: " + pet.getRaca());
+       System.out.println("Porte do Pet " + pet.getPorte());
+       System.out.println("O nome da ração: ");
+       System.out.println("---------------------------------------------------");
+
+
+
+
+
+
+
+
+
+
+              lr.close();
     //    System.out.println("Titulo: " + livro2.getTitulo());
     //    System.out.println("Autor do livro: " + livro2.getAutor());
     //    System.out.println("Número de Páginas: " + livro2.getNbpag());
     //    System.out.println("Preço: R$ " + livro2.getValor());
     }
+
+    
+
 }
