@@ -49,7 +49,7 @@ public class main {
        System.out.println("Idade do PEt: " + pet.getIdade());
        System.out.println("Raça: " + pet.getRaca());
        System.out.println("Porte do Pet " + pet.getPorte());
-       System.out.println("O nome da ração: ");
+       System.out.println("O nome da ração: "+ pet.getAlimentacao());
        System.out.println("---------------------------------------------------");
 
 
