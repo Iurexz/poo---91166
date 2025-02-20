@@ -2,7 +2,8 @@ package UsandoEnum;
 
 public class MainPT {
     public static void main(String[] args) {
-        Tipo tipo = new Tipo("Papinh", Pessoa.ALIEN);
-        System.out.println(Tipo.toString);
+        Funcionario funcionario1 = new Funcionario(07, "silva", 1568.8, Setor.FINANCEIRO,Sexo.MASCULINO, 19);
+
+        System.out.println(funcionario1.toString());
     }
 }
