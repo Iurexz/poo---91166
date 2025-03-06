@@ -11,4 +11,9 @@ public class Galo implements Animal {
     public String comer() {
        return "Milho";
     }
+
+    @Override
+    public String acao() {
+        return "Cisca";
+}
 }

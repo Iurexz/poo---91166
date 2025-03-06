@@ -11,5 +11,10 @@ public class Gato implements Animal {
     public String comer() {
        return "Ração de Salmão"; 
     }
+
+    @Override
+    public String acao() {
+        return "arranha";
     
+}
 }

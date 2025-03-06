@@ -4,13 +4,20 @@ public class Cachorro implements Animal {
 
     @Override
     public String emitirSom() {
-        return "Auau";
+        return "auau";
     }
 
     @Override
     public String comer() {
-        return "Ração de Carne";
+        return "ração";
     }
 
+    @Override
+    public String acao() {
+        return "correr e babar";
+
+   
+
     
+}
 }

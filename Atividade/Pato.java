@@ -11,5 +11,10 @@ public class Pato implements Animal {
     public String comer() {
         return "Pessoas";
     }
-    
+
+    @Override
+    public String acao() {
+        return "Corre pkarai";
+
+}
 }
