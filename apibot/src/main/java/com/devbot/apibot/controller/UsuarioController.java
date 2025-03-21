@@ -10,6 +10,10 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -37,10 +41,21 @@ public class UsuarioController {
         
     }
     
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
         return ResponseEntity.ok(usuarioService.atualizar(usuario));
     }
+
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
+    //     if(usuario.getId() != null && usuarioService.existsById(id)){
+    //         return ResponseEntity.ok(usuarioService.atualizar(usuario));
+    //     }else{
+    //         return ResponseEntity.notFound().build();
+    //     }
+    
+    // }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){

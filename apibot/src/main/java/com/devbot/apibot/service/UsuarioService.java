@@ -42,4 +42,9 @@ public class UsuarioService {
         public void deletar(Long id) {
                 usuarioRepository.deleteById(id);
         }
+
+        public boolean existsById(Long id) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+        }
 }
