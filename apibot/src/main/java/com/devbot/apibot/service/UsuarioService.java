@@ -3,48 +3,55 @@ package com.devbot.apibot.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.devbot.apibot.model.Usuario;
 import com.devbot.apibot.repository.UsuarioRepository;
 
-@Service
+import jakarta.validation.Valid;
 
+@Service
+@Validated
 public class UsuarioService {
     
         private final UsuarioRepository usuarioRepository;
 
         public UsuarioService(UsuarioRepository usuarioRepository) {
-                this.usuarioRepository = usuarioRepository;
+            this.usuarioRepository = usuarioRepository;
         }
 
-        public Usuario salvar(Usuario usuario) {
-                try {
-                       return usuarioRepository.save(usuario);
-                } catch (Exception error) {
-                        throw new RuntimeException("Erro ao salvar usuário: " + error.getMessage());
+        public List<Usuario> listarUsuarios() {
+
+            return usuarioRepository.findAll();
+        }
+
+        public Usuario salvar(@Valid Usuario usuario) {
+                if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+                    throw new RuntimeException("Email já cadastrado");
                 }
+            return usuarioRepository.save(usuario);
+        }
+
+        public Usuario atualizar(@Valid Usuario usuario) {
+                Usuario usuarioAtualizar = usuarioRepository.findByEmail(usuario.getEmail())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+                usuarioAtualizar.setNome(usuario.getNome());
+                usuarioAtualizar.setEmail(usuario.getEmail());      
+                usuarioAtualizar.setSenha(usuario.getSenha());
+                
+                return usuarioRepository.save(usuarioAtualizar);
                 
         }
 
-        public List<Usuario> listar() {
-                return usuarioRepository.findAll();
-        }
 
-        public Usuario atualizar(Usuario usuario) {
-                try {
-                        return usuarioRepository.save(usuario);
-                } catch (Exception error) {
-                        throw new RuntimeException("Erro ao atualizar usuário: " + error.getMessage());
-                }
+
+
+        public void excluir(String email) {
+                Usuario usuario = usuarioRepository.findByEmail(email)
+                        .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                usuarioRepository.deleteById(usuario.getId());
                 
         }
-
-        public void deletar(Long id) {
-                usuarioRepository.deleteById(id);
-        }
-
-        public boolean existsById(Long id) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'existsById'");
-        }
+        
 }
