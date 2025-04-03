@@ -10,6 +10,8 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,14 +43,22 @@ public class UsuarioController {
     }
 
    @PostMapping
-    public ResponseEntity<Usuario> salvar(@Valid @RequestBody Usuario usuario){
-        return ResponseEntity.ok(usuarioService.salvar(usuario));
+    public ResponseEntity<String> salvar(@Valid @RequestBody Usuario usuario){
+        usuarioService.salvar(usuario);
+        String mensagem = "Usuário " + usuario.getNome() + " cadastrado com sucesso";
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensagem);
     }
     
     @PutMapping 
     public ResponseEntity<Usuario> atualizar(@Valid @RequestBody Usuario usuario){
-        
+        usuarioService.atualizar(usuario);
+        return ResponseEntity.ok().body(usuario);
     }
 
+    @DeleteMapping("/{email}")
+    public ResponseEntity<String> excluir(@PathVariable String email){
+        usuarioService.excluir(email);
+        return ResponseEntity.ok().body("Usuário excluido com sucesso");
+    }
    
 }

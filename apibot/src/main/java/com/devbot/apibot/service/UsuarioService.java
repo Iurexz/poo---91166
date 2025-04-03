@@ -33,7 +33,7 @@ public class UsuarioService {
         }
 
         public Usuario atualizar(@Valid Usuario usuario) {
-                Usuario usuarioAtualizar = usuarioRepository.findByEmail(usuario.getEmail())
+                Usuario usuarioAtualizar = usuarioRepository.findById(usuario.getId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
                 usuarioAtualizar.setNome(usuario.getNome());
